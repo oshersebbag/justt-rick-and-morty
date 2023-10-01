@@ -44,19 +44,51 @@ const Circle = styled.div`
   border: ${(props) => props.theme.palette.primary.main} 3px solid;
   border-radius: 50%;
   position: absolute;
-  top: -20px;
+  top: -22px;
   bottom: 0;
   left: 0;
   right: 0;
   margin: auto;
-  animation: circle 10s linear infinite;
+  animation: circle 8s linear infinite;
 
   @keyframes circle {
     0% {
-      transform: rotate(0deg) translate(-105px) rotate(0deg);
+      transform: rotate(0deg) translate(-107px) rotate(0deg);
+      width: 30px;
+      height: 30px;
+    }
+    12.5% {
+      height: 35px;
+      width: 35px;
+    }
+    25% {
+      width: 30px;
+      height: 30px;
+    }
+    37.5% {
+      height: 35px;
+      width: 35px;
+    }
+    50% {
+      width: 30px;
+      height: 30px;
+    }
+    62.5% {
+      height: 35px;
+      width: 35px;
+    }
+    75% {
+      width: 30px;
+      height: 30px;
+    }
+    87.5% {
+      height: 35px;
+      width: 35px;
     }
     100% {
-      transform: rotate(360deg) translate(-105px) rotate(-360deg);
+      transform: rotate(360deg) translate(-107px) rotate(-360deg);
+      width: 30px;
+      height: 30px;
     }
   }
 `;
