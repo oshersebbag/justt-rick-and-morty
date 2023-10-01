@@ -19,12 +19,16 @@ const SearchId: React.FC = () => {
   const [isEmpty, setIsEmpty] = useState<boolean>(true);
   const [{ data, loading, error }, refetch] = useGetCharactersById(searchId);
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     if (searchId.trim() === "") {
       setIsEmpty(true);
     } else {
       setIsEmpty(false);
-      refetch();
+      try {
+        await refetch();
+      } catch (error) {
+        console.error("Error while fetching:", error);
+      }
     }
   };
 

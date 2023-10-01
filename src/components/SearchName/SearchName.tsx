@@ -18,18 +18,25 @@ const SearchName: React.FC = () => {
   const [{ data, loading, error }, refetch] =
     useGetCharactersByName(searchName);
 
-  const handleSearch = () => {
+  const handleInitial = () => {
     refetch();
+  };
+
+  useEffect(() => handleInitial(), []);
+
+  const handleSearch = async () => {
+    try {
+      await refetch();
+    } catch (error) {
+      console.error("Error while fetching:", error);
+    }
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLImageElement>) => {
     if (event.key === "Enter") {
-      refetch();
+      handleSearch();
     }
   };
-
-  useEffect(() => handleSearch(), []);
-
   return (
     <>
       <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
