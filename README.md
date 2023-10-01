@@ -39,3 +39,11 @@ and data is rendered according to the assignment requiremnments in the Character
 CharactersTable is our main component to display query data from "browse", I styled the table from the figma requirenment and allowed sorting by Id, collapsable CharacterCard component, defined a height for the table for cases in which the user gets many results (scrolling will show), and if we check if the Data recived from our search has only 1, we pre-open the collapsable component.
 to allow individual collapsable I've created the table's Row in a different component using it's own "open"<boolean> state.
 
+### Contactn me
+
+for any question im here!
+
+mail: osher.sebbag@tikalk.com
+phone: +972528468462
+
+
