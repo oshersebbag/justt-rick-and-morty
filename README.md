@@ -14,33 +14,28 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Solution
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+In this Hone assignment I've used React, typscript, Material ui, Axios Hooks to provide my solution.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+at first we render our header and menu, using MUI tabs I've build the desired "look" from figma and I render our serch bars according to the users choice, with a default value of "browse" (or SearchName).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### SearchName
+using UseAxios hook we fire a fetch request and showing the first 20 charchters to the user (same for user who search for empty string)
+useAxios allows us to handle different states of our request - loading, error and data
+we render the status with our prebuilt VisualStatus components (for error, loadind, fallback)
+and data is rendered according to the assignment requiremnments in the CharactersTable component.
 
-### `npm run eject`
+### SearchId
+at first we indicate that the user needs to search for an Id using the SearchToView VisualStatu component,
+using UseAxios hook we fire a fetch request for a specific Id, and we don't allow empty string.
+as SearchName useAxios allows us to use - loading, error and data.
+and data is rendered according to the assignment requiremnments in the CharacterCard component.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### CharactersTable
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+CharactersTable is our main component to display query data from "browse", I styled the table from the figma requirenment and allowed sorting by Id, collapsable CharacterCard component, defined a height for the table for cases in which the user gets many results (scrolling will show), and if we check if the Data recived from our search has only 1, we pre-open the collapsable component.
+to allow individual collapsable I've created the table's Row in a different component using it's own "open"<boolean> state.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
