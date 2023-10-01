@@ -137,6 +137,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiGrid:{
+      styleOverrides:{
+        root:{
+          textAlign: "left",
+        },
+      },
+    },
   },
 });
 

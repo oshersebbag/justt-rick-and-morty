@@ -77,6 +77,7 @@ const DescriptionContainer = styled.div`
   border: 1px solid #f6f4fb;
   border-radius: 11px;
   padding: 30px;
+  text-align: left;
 `;
 
 const ItemInfo = styled.p`
