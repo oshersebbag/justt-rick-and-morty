@@ -1,22 +1,24 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { Box, TableSortLabel } from "@mui/material";
+import { TableSortLabel } from "@mui/material";
 import CharacterRow from "./CharacterRow";
 import { Character } from "../../types/Character";
 import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 import { useEffect } from "react";
+import styled from "styled-components";
 
 interface CharactersTableProps {
   characters: Character[];
 }
 
-export default function CharactersTable({ characters = [] }: CharactersTableProps) {
+export default function CharactersTable({
+  characters = [],
+}: CharactersTableProps) {
   const [order, setOrder] = React.useState<"asc" | "desc">("asc");
   const [rows, setRows] = React.useState(characters);
   const [isSingleResult, setIsSingleResult] = React.useState<boolean>(
@@ -45,8 +47,8 @@ export default function CharactersTable({ characters = [] }: CharactersTableProp
   };
 
   return (
-    <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
-      <TableContainer component="div" sx={{ width: "80%", height: "600px" }}>
+    <Container>
+      <TableContainer sx={{ width: "80%", height: "600px" }} component="div">
         <Table stickyHeader>
           <TableHead>
             <TableRow>
@@ -65,24 +67,12 @@ export default function CharactersTable({ characters = [] }: CharactersTableProp
                   I.d
                 </TableSortLabel>
               </StyledTableCell>
-              <StyledTableCell align="center" style={{ width: "20%" }}>
-                Name
-              </StyledTableCell>
-              <StyledTableCell align="center" style={{ width: "15%" }}>
-                Species
-              </StyledTableCell>
-              <StyledTableCell align="center" style={{ width: "15%" }}>
-                Status
-              </StyledTableCell>
-              <StyledTableCell align="center" style={{ width: "15%" }}>
-                Origin
-              </StyledTableCell>
-              <StyledTableCell align="center" style={{ width: "15%" }}>
-                Gender
-              </StyledTableCell>
-              <StyledTableCell align="center" style={{ width: "10%" }}>
-                More
-              </StyledTableCell>
+              <StyledTableCell sx={{ width: "20%" }}>Name</StyledTableCell>
+              <StyledTableCell sx={{ width: "15%" }}>Species</StyledTableCell>
+              <StyledTableCell sx={{ width: "15%" }}>Status</StyledTableCell>
+              <StyledTableCell sx={{ width: "15%" }}>Origin</StyledTableCell>
+              <StyledTableCell sx={{ width: "15%" }}>Gender</StyledTableCell>
+              <StyledTableCell sx={{ width: "10%" }}>More</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -96,7 +86,7 @@ export default function CharactersTable({ characters = [] }: CharactersTableProp
           </TableBody>
         </Table>
       </TableContainer>
-    </Box>
+    </Container>
   );
 }
 
@@ -105,8 +95,10 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     backgroundColor: theme.palette.primary.dark,
     color: theme.palette.common.white,
   },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-    color: theme.palette.secondary.dark,
-  },
 }));
+
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;

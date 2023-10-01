@@ -1,26 +1,34 @@
 import { Alert, Box } from "@mui/material";
 import React from "react";
 import LinearProgress from "@mui/material/LinearProgress";
+import { styled } from "styled-components";
 
 const Loading: React.FC = () => {
   return (
-    <Box
-      sx={{
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        marginTop: "50px",
-        gap: "20px",
-      }}
-    >
-      <LinearProgress  sx={{ width: "80%" }} />
-      <Alert severity="info" sx={{ width: "80%" }}>
+    <LoadingContainer>
+      <StatusBar />
+      <LoadingMsg severity="info">
         I'm Loading here! take a deep breath :)
-      </Alert>
-      <LinearProgress sx={{ width: "80%" }} />
-    </Box>
+      </LoadingMsg>
+      <StatusBar />
+    </LoadingContainer>
   );
 };
 
 export default Loading;
+
+const LoadingContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  gap: 20px;
+`;
+const LoadingMsg = styled(Alert)`
+  width: 80%;
+`;
+
+const StatusBar = styled(LinearProgress)`
+  width: 80%;
+`;

@@ -13,6 +13,7 @@ import Loading from "../VisualStatus/Loading";
 import Error from "../VisualStatus/Error";
 import SearchToView from "../VisualStatus/SearchToView";
 import Fallback from "../VisualStatus/Fallback";
+import { styled } from "styled-components";
 
 const SearchId: React.FC = () => {
   const [searchId, setSearchId] = useState("");
@@ -40,18 +41,8 @@ const SearchId: React.FC = () => {
 
   return (
     <>
-      <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
-        <Box
-          sx={{
-            width: "80%",
-            maxWidth: "100%",
-            display: "flex",
-            justifyContent: "center",
-            backgroundColor: "#EFEFF4",
-            padding: "20px",
-            gap: "10px",
-          }}
-        >
+      <Container>
+        <SearchContainer>
           <OutlinedInput
             value={searchId}
             onChange={(e) => setSearchId(e.target.value)}
@@ -61,22 +52,17 @@ const SearchId: React.FC = () => {
             endAdornment={
               <InputAdornment position="end">
                 <IconButton edge="end">
-                  <Search sx={{ fill: "#333333" }} />
+                  <SearchIcon />
                 </IconButton>
               </InputAdornment>
             }
-            sx={{
-              "&.MuiInputBase-input.MuiOutlinedInput-input ::placeholder": {
-                color: "blue",
-              },
-            }}
           />
 
           <Button disableElevation onClick={handleSearch}>
-            GO{" "}
+            GO
           </Button>
-        </Box>
-      </Box>
+        </SearchContainer>
+      </Container>
 
       {isEmpty ? (
         <SearchToView />
@@ -85,14 +71,7 @@ const SearchId: React.FC = () => {
       ) : loading ? (
         <Loading />
       ) : data ? (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            width: "100%",
-            padding: "0px 10%",
-          }}
-        >
+        <CharacterCardContainer>
           <CharacterCard
             name={data.name}
             id={data.id}
@@ -102,7 +81,7 @@ const SearchId: React.FC = () => {
             gender={data.gender}
             species={data.species}
           />
-        </Box>
+        </CharacterCardContainer>
       ) : (
         <Fallback />
       )}
@@ -111,3 +90,30 @@ const SearchId: React.FC = () => {
 };
 
 export default SearchId;
+
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+const SearchContainer = styled.div`
+  width: 80%;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  background: ${(props) => props.theme.palette.success.light};
+  padding: 20px;
+  gap: 10px;
+`;
+
+const SearchIcon = styled(Search)`
+  fill: ${(props) => props.theme.palette.success.dark};
+`;
+
+const CharacterCardContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0px 10%;
+`;

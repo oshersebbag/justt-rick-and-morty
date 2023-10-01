@@ -4,30 +4,14 @@ import styled from "styled-components";
 
 const SearchToView: React.FC = () => {
   return (
-    <Box
-      sx={{
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-      }}
-    >
-      <Box
-        sx={{
-          width: "80%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "20px",
-          backgroundColor: "background.default",
-          padding: "50px 0px 100px",
-        }}
-      >
+    <SearchToViewContainer>
+      <ContentContainer>
         <img src="/search.svg" alt="logo" />
         <SerchToViewText>
           Search for a character i.d in order to view a character
         </SerchToViewText>
-      </Box>
-    </Box>
+      </ContentContainer>
+    </SearchToViewContainer>
   );
 };
 
@@ -39,4 +23,20 @@ const SerchToViewText = styled.p`
   font-weight: 300;
   color: ${(props) => props.theme.palette.secondary.dark};
   margin: 10px 0px;
+`;
+
+const SearchToViewContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+const ContentContainer = styled.div`
+width: 80%;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 20px;
+background: ${(props) => props.theme.palette.background.default};
+padding: 50px 0px 100px;
 `;

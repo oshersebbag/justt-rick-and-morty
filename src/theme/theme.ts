@@ -18,6 +18,8 @@ const customColors = {
     hoverSelected: "#350C8B",
     root: "#efeffd",
     card: "#f7f5fd",
+    search: "#EFEFF4",
+    dark: "#333333",
   },
   input: {
     outline: "#DDDDDD",
@@ -50,6 +52,8 @@ const theme = createTheme({
     },
     success: {
       main: customColors.secondary,
+      light: customColors.background.search,
+      dark: customColors.background.dark
     },
   },
   typography: {
@@ -82,6 +86,12 @@ const theme = createTheme({
             "&:hover": {
               backgroundColor: customColors.background.hoverSelected,
             },
+          },
+          "&:first-child":{
+            borderRadius: "8px 0 0 8px",
+          },
+          "&:last-child":{
+            borderRadius: "0 8px 8px 0",
           },
         },
       },
@@ -117,6 +127,13 @@ const theme = createTheme({
             color: customColors.primary,
             borderColor: customColors.primary,
           },
+        },
+      },
+    },
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          textAlign: "center",
         },
       },
     },

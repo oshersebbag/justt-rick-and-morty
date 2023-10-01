@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { Character } from "../../types/Character";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import ExpandCircleDownSharpIcon from "@mui/icons-material/ExpandCircleDownSharp";
 import { useEffect, useState } from "react";
 import CharacterCard from "../CharcterCard/CharacterCard";
 
@@ -17,7 +17,10 @@ interface CharacterRowProps {
   isSingleResult: boolean;
 }
 
-export default function CharacterRow({ character, isSingleResult }: CharacterRowProps) {
+export default function CharacterRow({
+  character,
+  isSingleResult,
+}: CharacterRowProps) {
   const [open, setOpen] = useState(isSingleResult);
 
   useEffect(() => {
@@ -27,26 +30,23 @@ export default function CharacterRow({ character, isSingleResult }: CharacterRow
   return (
     <>
       <StyledTableRow key={character.name}>
-        <StyledTableCell align="center">{character.id}</StyledTableCell>
-        <StyledTableCell align="center">{character.name}</StyledTableCell>
-        <StyledTableCell align="center">{character.species}</StyledTableCell>
-        <StyledTableCell align="center">{character.status}</StyledTableCell>
-        <StyledTableCell align="center">
-          {character.origin.name}
-        </StyledTableCell>
-        <StyledTableCell align="center">{character.gender}</StyledTableCell>
-        <StyledTableCell align="center">
+        <StyledTableCell>{character.id}</StyledTableCell>
+        <StyledTableCell>{character.name}</StyledTableCell>
+        <StyledTableCell>{character.species}</StyledTableCell>
+        <StyledTableCell>{character.status}</StyledTableCell>
+        <StyledTableCell>{character.origin.name}</StyledTableCell>
+        <StyledTableCell>{character.gender}</StyledTableCell>
+        <StyledTableCell>
           <IconButton
-            aria-label="expand row"
             size="small"
             onClick={() => setOpen(!open)}
           >
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+            {open ? <ExpandUp /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </StyledTableCell>
       </StyledTableRow>
       <TableRow>
-        <TableCell style={{ padding: 0 }} colSpan={7}>
+        <StyledCollapsable colSpan={7}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <CharacterCard
               name={character.name}
@@ -58,21 +58,21 @@ export default function CharacterRow({ character, isSingleResult }: CharacterRow
               species={character.species}
             />
           </Collapse>
-        </TableCell>
+        </StyledCollapsable>
       </TableRow>
     </>
   );
 }
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.primary.dark,
-    color: theme.palette.common.white,
-  },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
     color: theme.palette.secondary.dark,
   },
+}));
+
+const StyledCollapsable = styled(TableCell)(({ theme }) => ({
+  padding: "0px !important",
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
@@ -86,3 +86,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     backgroundColor: theme.palette.background.default,
   },
 }));
+
+const ExpandUp = styled(ExpandCircleDownSharpIcon)`
+color: ${(props) => props.theme.palette.primary.main};
+transform: rotate(180deg);
+`

@@ -12,17 +12,16 @@ import { useGetCharactersByName } from "../../hooks/characters/useGetCharactersB
 import Error from "../VisualStatus/Error";
 import Loading from "../VisualStatus/Loading";
 import Fallback from "../VisualStatus/Fallback";
+import styled from "styled-components";
 
 const SearchName: React.FC = () => {
   const [searchName, setSearchName] = useState("");
   const [{ data, loading, error }, refetch] =
     useGetCharactersByName(searchName);
 
-  const handleInitial = () => {
+  useEffect(() => {
     refetch();
-  };
-
-  useEffect(() => handleInitial(), []);
+  }, []);
 
   const handleSearch = async () => {
     try {
@@ -39,18 +38,8 @@ const SearchName: React.FC = () => {
   };
   return (
     <>
-      <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
-        <Box
-          sx={{
-            width: "80%",
-            maxWidth: "100%",
-            display: "flex",
-            justifyContent: "center",
-            backgroundColor: "#EFEFF4",
-            padding: "20px",
-            gap: "10px",
-          }}
-        >
+      <Container>
+        <SearchContainer>
           <OutlinedInput
             value={searchName}
             onKeyDownCapture={handleKeyDown}
@@ -60,26 +49,24 @@ const SearchName: React.FC = () => {
             endAdornment={
               <InputAdornment position="end">
                 <IconButton edge="end">
-                  <Search sx={{ fill: "#333333" }} />
+                  <SearchIcon />
                 </IconButton>
               </InputAdornment>
             }
           />
 
           <Button disableElevation onClick={handleSearch}>
-            GO{" "}
+            GO
           </Button>
-        </Box>
-      </Box>
+        </SearchContainer>
+      </Container>
 
       {error ? (
         <Error />
       ) : loading ? (
         <Loading />
       ) : data?.results ? (
-        <>
-          <CharactersTable characters={data.results} />
-        </>
+        <CharactersTable characters={data.results} />
       ) : (
         <Fallback />
       )}
@@ -88,3 +75,23 @@ const SearchName: React.FC = () => {
 };
 
 export default SearchName;
+
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+const SearchContainer = styled.div`
+  width: 80%;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  background: ${(props) => props.theme.palette.success.light};
+  padding: 20px;
+  gap: 10px;
+`;
+
+const SearchIcon = styled(Search)`
+  fill: ${(props) => props.theme.palette.success.dark};
+`;

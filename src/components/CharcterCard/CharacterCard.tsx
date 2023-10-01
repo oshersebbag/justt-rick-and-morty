@@ -16,55 +16,53 @@ const CharacterCard: React.FC<CharacterCardProps> = (props) => {
   const { id, name, status, species, gender, origin, image } = props;
 
   return (
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          width: "100%",
-          padding: "50px",
-          gap: "50px",
-          background:"white",
-        }}
-      >
-        <Box>
-          <CharacterImage src={image} alt={name} />
-        </Box>
-        <DescriptionContainer>
-            <Title>
-                DESCRIPTION
-            </Title>
-          <Grid container  rowSpacing={2} columnSpacing={5}>
-            <Grid item xs={4}>
-              <ItemLabel>i.d</ItemLabel>
-              <ItemInfo>{id}</ItemInfo>
-            </Grid>
-            <Grid item xs={4}>
-              <ItemLabel>Name</ItemLabel>
-              <ItemInfo>{name}</ItemInfo>
-            </Grid>
-            <Grid item xs={4}>
-              <ItemLabel>Gender</ItemLabel>
-              <ItemInfo>{gender}</ItemInfo>
-            </Grid>
-            <Grid item xs={4}>
-              <ItemLabel>Origin</ItemLabel>
-              <ItemInfo>{origin}</ItemInfo>
-            </Grid>
-            <Grid item xs={4}>
-              <ItemLabel>Species</ItemLabel>
-              <ItemInfo>{species}</ItemInfo>
-            </Grid>
-            <Grid item xs={4}>
-              <ItemLabel>Status</ItemLabel>
-              <ItemInfo>{status}</ItemInfo>
-            </Grid>
-          </Grid>
-        </DescriptionContainer>
+    <CardContainer>
+      <Box>
+        <CharacterImage src={image} alt={name} />
       </Box>
+      <DescriptionContainer>
+        <Title>DESCRIPTION</Title>
+        <Grid container rowSpacing={2} columnSpacing={5}>
+          <Grid item xs={4}>
+            <ItemLabel>i.d</ItemLabel>
+            <ItemInfo>{id}</ItemInfo>
+          </Grid>
+          <Grid item xs={4}>
+            <ItemLabel>Name</ItemLabel>
+            <ItemInfo>{name}</ItemInfo>
+          </Grid>
+          <Grid item xs={4}>
+            <ItemLabel>Gender</ItemLabel>
+            <ItemInfo>{gender}</ItemInfo>
+          </Grid>
+          <Grid item xs={4}>
+            <ItemLabel>Origin</ItemLabel>
+            <ItemInfo>{origin}</ItemInfo>
+          </Grid>
+          <Grid item xs={4}>
+            <ItemLabel>Species</ItemLabel>
+            <ItemInfo>{species}</ItemInfo>
+          </Grid>
+          <Grid item xs={4}>
+            <ItemLabel>Status</ItemLabel>
+            <ItemInfo>{status}</ItemInfo>
+          </Grid>
+        </Grid>
+      </DescriptionContainer>
+    </CardContainer>
   );
 };
 
 export default CharacterCard;
+
+const CardContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 50px;
+  gap: 50px;
+  background: ${(props) => props.theme.palette.background.default};
+`;
 
 const CharacterImage = styled.img`
   border: ${(props) => props.theme.palette.primary.main} 5px solid;
@@ -97,8 +95,8 @@ const ItemLabel = styled.p`
   margin: 10px 0px;
 `;
 const Title = styled.p`
-font-family: Roboto;
-font-size: 14px;
-font-weight: 700;
-color: ${(props) => props.theme.palette.primary.main};
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 700;
+  color: ${(props) => props.theme.palette.primary.main};
 `;

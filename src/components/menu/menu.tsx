@@ -1,5 +1,6 @@
 import { Box, Tab, Tabs } from "@mui/material";
 import React from "react";
+import styled from "styled-components";
 import SearchId from "../SearchId/SearchId";
 import SearchName from "../SearchName/SearchName";
 
@@ -11,16 +12,20 @@ const Menu: React.FC = () => {
 
   return (
     <>
-      <Box sx={{ marginBottom: "20px" }}>
+      <TabsContainer>
         <Tabs value={value} onChange={handleChange} centered>
-          <Tab label="BROWSE" sx={{ borderRadius: "8px 0 0 8px" }} />
-          <Tab label="PICK A CHARACTER" sx={{ borderRadius: "0 8px 8px 0" }} />
+          <Tab label="BROWSE" />
+          <Tab label="PICK A CHARACTER" />
         </Tabs>
-      </Box>
-      {value === 0 && (<SearchName /> )}
-      {value === 1 && (<SearchId />)}
+      </TabsContainer>
+      {value === 0 && <SearchName />}
+      {value === 1 && <SearchId />}
     </>
   );
 };
 
 export default Menu;
+
+const TabsContainer = styled.div`
+  margin-bottom: 20px;
+`;
